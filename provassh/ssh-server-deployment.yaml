@@ -1,0 +1,27 @@
+# ssh-server-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-server-deployment
+  namespace: ssh-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-server
+  template:
+    metadata:
+      labels:
+        app: ssh-server
+    spec:
+      containers:
+      - name: ssh-server
+        image: panubo/sshd:latest
+        ports:
+        - containerPort: 22
+        env:
+        - name: SSH_USERS
+          # Nuova sintassi: user:password::
+          value: "testuser:testpassword::"
+        - name: SUDO_USERS
+          value: "testuser"

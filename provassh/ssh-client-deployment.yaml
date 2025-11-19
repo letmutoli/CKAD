@@ -1,0 +1,22 @@
+# ssh-client-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-client-deployment
+  namespace: ssh-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-client
+  template:
+    metadata:
+      labels:
+        app: ssh-client
+    spec:
+      containers:
+      - name: ssh-client
+        # Immagine con client ssh installato (debian-slim è una buona scelta)
+        image: debian:stable-slim 
+        command: ["/bin/bash", "-c"]
+        args: ["apt-get update && apt-get install -y openssh-client && while true; do sleep 3600; done"]
