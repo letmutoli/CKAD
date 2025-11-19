@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: corso
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: esempio1
+  namespace: corso
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginx
