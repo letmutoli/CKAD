@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podcm
+  labels:
+    app: webserver
+    environment: production
+    version: 1.0.0
+  annotations:
+    description: This is a web server example
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginx
+      envFrom:
+        - configMapRef:
+            name: configurazione

@@ -1,0 +1,11 @@
+#config map
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configurazione
+  namespace: default
+  labels:
+    environment: production
+data:
+  chiave1: valore1
+  debug: "verbose"
