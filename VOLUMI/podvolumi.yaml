@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podvolumi
+  labels:
+    environment: production
+    tier: ui
+spec:
+  volumes:
+    - name: logvol
+      emptyDir: {}
+  containers:
+    - image: nginx:latest
+      name: nginx
+      volumeMounts:
+        - name: logvol
+          mountPath: /varlog/log
