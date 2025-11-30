@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multic
+  labels:
+    environment: ftontend
+    tier: ui
+spec:
+  containers:
+    - image: nginx:latest
+      name: server1
+      ports:
+        - containerPort: 80
+    - image: nginx:latest
+      name: server2
+      ports:
+        - containerPort: 88

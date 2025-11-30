@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: adapterpattern
+spec:
+  volumes:
+    - name: log-vol
+      emptyDir: {}
+  containers:
+    - name: app1
+      image: busybox
+      command: ["/bin/sh"]
+      args: ["-c", "while true;do date >> /var/log/data.txt;sleep 10;done;"]
+      volumeMounts:
+        - name: log-vol
+          mountPath: /var/log/
+    - name: adapter
+      image: alpine:latest
+      command: ["/bin/sh"]
+      args:
+        [
+          "-c",
+          "tail -f /var/log/data.txt|sed -e 's/^/Data Cambiata/' >> /var/log/data2.txt",
+        ]
+      volumeMounts:
+        - name: log-vol
+          mountPath: /var/log/
