@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambassadorpattern
+spec:
+  volumes:
+    - name: shared-vol
+      emptyDir: {}
+  containers:
+    - name: app-container-pool
+      image: nginx:latest
+      command: ["/bin/bash"]
+      args:
+        [
+          "-c",
+          "while true;do curl 127.0.0.1:81 >> /usr/share/nginx/html/index.html;sleep 10;done;",
+        ]
+      volumeMounts:
+        - name: shared-vol
+          mountPath: /usr/share/nginx/html
+    - name: app-container-server
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: shared-vol
+          mountPath: /usr/share/nginx/html
+    - name: app-container-ambassador
+      image: bharamicrosystems/nginx-forward-proxy
+      ports:
+        - containerPort: 81
