@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: initc
+spec:
+ containers:
+  - image: nginx:latest
+    name: app1
+    ports:
+     - containerPort: 80
+ initContainers:
+  - image: busybox:latest
+    name: ritardo
+    command: ["sleep","60"]
