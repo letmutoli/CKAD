@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: esempio2
+  labels:
+    environment: backend
+    tier: ui
+  annotations:
+    descrzione: "questo e' un esempio di annotazione fatta da me"
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginx
+      env:
+        - name: saluta
+          value: "ciao"
+        - name: saluta2
+          value: "ciao2"

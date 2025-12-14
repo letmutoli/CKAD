@@ -1,0 +1,2 @@
+ user=dbuser
+ db_url=jdbc://mysaql://localhost:33046/miodb

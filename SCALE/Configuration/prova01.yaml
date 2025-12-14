@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxuse
+spec:
+  containers:
+    - name: nginxuse
+      image: nginx:latest
+      envFrom:
+        - secretRef:
+            name: dbpass
+        - configMapRef:
+            name: db-user
