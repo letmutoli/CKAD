@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: test-quota
+  name: esempio
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginx
+      resources:
+        requests:
+          cpu: "0.5"
+          memory: 256Mi
+        limits:
+          cpu: "1"
+          memory: 1024Mi

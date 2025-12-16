@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
+  namespace: test-quota
   name: myquota
 spec:
   hard:
