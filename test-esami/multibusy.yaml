@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multicon
+spec:
+  containers:
+    - name: b1
+      image: busybox
+      command: ["/bin/sh", "-c", "echo hello; sleep 3600"]
+    - name: b2
+      image: busybox
+      command: ["/bin/sh", "-c", "echo hello; sleep 3600"]
